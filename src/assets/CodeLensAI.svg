@@ -1,0 +1,21 @@
+<svg width="300" height="80" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Lens circle outer -->
+  <circle cx="36" cy="36" r="28" fill="none" stroke="#185FA5" stroke-width="3"/>
+
+  <!-- Lens circle inner -->
+  <circle cx="36" cy="36" r="20" fill="none" stroke="#185FA5" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Code brackets inside lens -->
+  <text x="36" y="42" text-anchor="middle" font-family="monospace" font-size="18" font-weight="700" fill="#185FA5">&lt;/&gt;</text>
+
+  <!-- Lens handle -->
+  <line x1="57" y1="57" x2="70" y2="70" stroke="#185FA5" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- CodeLens text -->
+  <text x="86" y="30" font-family="sans-serif" font-size="22" font-weight="600" fill="#185FA5">CodeLens</text>
+
+  <!-- AI text -->
+  <text x="86" y="55" font-family="sans-serif" font-size="16" font-weight="400" fill="#888780">AI</text>
+
+</svg>
