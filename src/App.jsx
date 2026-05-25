@@ -1,3 +1,4 @@
+import Dashboard from "./Components/Dashboard.jsx"
 import Home from "./Components/Home.jsx"
 import HowItWorks from "./Components/HowItWorks.jsx"
 import Login from "./Components/Login.jsx"
@@ -10,6 +11,7 @@ const App = () => {
       <HowItWorks/> 
       {/* <Login/> */}
       {/* <Register/> */}
+      <Dashboard/>
     </div>
   )
 }
