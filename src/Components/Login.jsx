@@ -1,5 +1,6 @@
 import icon from "../assets/CodeLensAI-Icon.svg";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Login = () => {
   const {
@@ -9,9 +10,14 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data) => {
+    try { 
+      const response = await axios.post("/api/v1/users/login", data);
+      console.log(response.data);
+      reset();
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   return (
@@ -32,7 +38,7 @@ const Login = () => {
 
             {/* Password */}
           <label htmlFor="">Password</label>
-          <input type="password" {...register("email", { required: true })} className="border border-[#E0E0E0] p-2 rounded-md focus:outline-none focus:ring-0 focus:border-[#E0E0E0]"/>
+          <input type="password" {...register("password", { required: true })} className="border border-[#E0E0E0] p-2 rounded-md focus:outline-none focus:ring-0 focus:border-[#E0E0E0]"/>
           {errors.password && <p>{errors.password.message}</p>}
 
           <button type="submit" className=" bg-[#185FA5] text-white rounded-md py-2 mt-5">Login</button>

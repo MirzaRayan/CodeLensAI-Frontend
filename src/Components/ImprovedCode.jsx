@@ -13,7 +13,7 @@ const ImprovedCode = ({ improvedCode, language }) => {
   if (!improvedCode) return null;
 
   return (
-    <div className="mt-4 bg-white border border-gray-200 rounded-xl overflow-hidden">
+    <div className="bg-white border border-gray-200 rounded-xl overflow-hidden w-[95%] min-h-125">
 
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 bg-gray-50 border-b border-gray-200">
@@ -51,7 +51,7 @@ const ImprovedCode = ({ improvedCode, language }) => {
 
       {/* Monaco Editor */}
       <Editor
-        height="300px"
+        height="400px"
         language={language}
         theme="vs-dark"
         value={improvedCode}

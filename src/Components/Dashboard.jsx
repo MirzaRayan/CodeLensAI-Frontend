@@ -2,11 +2,15 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import CodeEditor from "./CodeEditor.jsx";
 import ReviewResults from "./ReviewResults.jsx";
-// import ImprovedCode from './ImprovedCode.jsx'
+import ImprovedCode from "./ImprovedCode.jsx";
+import axios from "axios";
 
 const Dashboard = () => {
   const [code, setCode] = useState("// write your code here");
   const [copied, setCopied] = useState(false);
+  const [reviewData, setReviewData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [improvedCode, setImprovedCode] = useState(null);
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -14,8 +18,21 @@ const Dashboard = () => {
     },
   });
 
-  const onSubmit = (data) => {
-    console.log({ ...data, code });
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/v1/reviews/review-code", {
+        code,
+        language: data.language,
+      });
+      console.log(response.data.data.review);
+      setReviewData(response.data.data.review);
+      setImprovedCode(response.data.data.review.improvedCode);
+    } catch (error) {
+      console.log(error.response.data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCopy = async () => {
@@ -41,10 +58,9 @@ const Dashboard = () => {
           onSubmit={onSubmit}
           handleCopy={handleCopy}
         />
-        <ReviewResults />
+        <ReviewResults review={reviewData} loader={loading} />
       </div>
-      {/* <ImprovedCode improvedCode={`const x = 1\nconsole.log(x)`}
-    language="javascript"/> */}
+      {improvedCode && <ImprovedCode improvedCode={improvedCode} />}
     </div>
   );
 };
